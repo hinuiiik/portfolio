@@ -8,6 +8,10 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        inter: ['var(--font-inter)'],
+        raleway: ['var(--font-raleway)']
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

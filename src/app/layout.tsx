@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Raleway } from 'next/font/google'
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// If loading a variable font, you don't need to specify the font weight
+const inter = Inter({
+    subsets: ['latin'],
+    display: 'swap',
+    variable: '--font-inter',
+})
+
+const raleway = Raleway({
+    subsets: ['latin'],
+    display: 'swap',
+    variable: '--font-raleway',
+})
 
 export const metadata: Metadata = {
   title: "Vikram Krishnakumar",
@@ -18,17 +22,13 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
-  );
+        children,
+                                   }: {
+    children: React.ReactNode
+}) {
+    return (
+        <html lang="en" className={`${inter.variable} ${raleway.variable} antialiased`}>
+        <body>{children}</body>
+        </html>
+    )
 }
