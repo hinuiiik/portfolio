@@ -34,7 +34,7 @@ export default function ProjectBox({ name, image, description, alt, site_link, g
                 />
             )}
 
-            <p className="text-2xl mt-4 text-center font-raleway">{name}</p>
+            <p className="text-2xl m-1 text-center font-raleway">{name}</p>
 
             <p className="text-gray-300 flex-grow text-left">{description}</p>
 

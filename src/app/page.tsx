@@ -40,7 +40,7 @@ export default function Home() {
 
             <ScrollIndicator/>
 
-            <div className="border-t-2 w-[90%] mx-auto">
+            <div className="border-t-2 w-[90%] mx-auto mb-11">
                 <p className={"py-10 text-center text-4xl font-raleway"}>Projects</p>
                 <div className={"flex flex-col lg:flex-row items-center justify-center  gap-6"}>
                     <ProjectBox
