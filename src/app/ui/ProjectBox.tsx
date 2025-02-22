@@ -13,7 +13,7 @@ export interface ProjectProps {
 
 export default function ProjectBox({ name, image, description, alt, site_link, github }: ProjectProps) {
     return (
-        <div className="mx-auto bg-white/10 backdrop-blur-md p-6 rounded-lg border border-white/50 text-left flex flex-col h-[600px] max-w-[450px]">
+        <div className="mx-auto bg-white/10 backdrop-blur-md p-6 rounded-lg border border-white/50 text-left flex flex-col h-[600px]  w-[450px]">
             {site_link ? (
                 <a href={site_link} target="_blank" rel="noopener noreferrer">
                     <Image
