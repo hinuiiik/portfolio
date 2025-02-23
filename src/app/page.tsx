@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Home() {
     return (<div className="text-white relative w-full">
-        <div id="topbox" className="relative overflow-hidden">
+        <div className="relative overflow-hidden">
             <LinkParticles/>
 
             {/* Welcome Section */}

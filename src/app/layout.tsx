@@ -37,17 +37,12 @@ export default async function RootLayout({
         >
         <body className="flex min-h-screen w-screen overflow-x-hidden">
         <SidebarProvider defaultOpen={defaultOpen}>
-            {/* Sidebar */}
             <AppSidebar/>
-            {/* Main Container */}
             <div className="flex-1 relative w-full">
-                {/* Sticky Sidebar Trigger */}
                 <SidebarTrigger className="sticky top-2 left-2 z-50"/>
-                {/* Socials (fixed closer to the top) */}
                 <header className="absolute top-2 right-4">
                     <Socials/>
                 </header>
-                {/* Main Content */}
                 <main className="flex flex-col items-center justify-center w-full mx-auto overflow-hidden">
                     {children}
                 </main>
