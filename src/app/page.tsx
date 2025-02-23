@@ -2,6 +2,7 @@ import Image from "next/image";
 import LinkParticles from "./ui/LinkParticles";
 import ScrollIndicator from "./ui/ScrollIndicator";
 import ProjectBox from "./ui/ProjectBox";
+import Link from "next/link";
 
 export default function Home() {
     return (<div className="text-white relative w-full">
@@ -34,8 +35,9 @@ export default function Home() {
                 </div>
             </div>
         </div>
-
-        <ScrollIndicator/>
+        <Link href={"#Projects"}>
+            <ScrollIndicator/>
+        </Link>
 
         {/* Slim White Line */}
         <div className="mx-auto w-4/5 border-t border-white"></div>
