@@ -106,7 +106,7 @@ const BackgroundParticles: React.FC = () => {
             id="tsparticles"
             options={options}
             particlesLoaded={particlesLoaded}
-            className="absolute inset-0 -z-50"
+            className="absolute top-0 left-0 w-full h-full -z-10"
         />
     );
 };
