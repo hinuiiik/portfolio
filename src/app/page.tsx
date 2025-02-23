@@ -24,13 +24,27 @@ export default function Home() {
                 </div>
 
                 <div className="flex justify-end lg:ml-24">
+                    {/* Desktop */}
                     <Image
                         src="/face.jpg"
                         alt="Vikram Krishnakumar Suit Picture"
                         width={350}
                         height={350}
-                        className="rounded-lg"
+                        className="rounded-lg hidden md:block" // Hidden on small screens, shown on md and larger
                         priority
+                        loading="eager"
+                    />
+
+                    {/* Mobile */}
+                    <Image
+                        src="/face.jpg"
+                        alt="Vikram Krishnakumar Suit Picture"
+                        width={350} // Width will be overridden by Tailwind
+                        height={0} // Maintain aspect ratio
+                        className="rounded-lg block md:hidden w-4/5 mx-auto" // Shown on small screens, 80% width
+                        priority
+                        loading="eager"
+                        style={{height: "auto", width: "80%"}}
                     />
                 </div>
             </div>
