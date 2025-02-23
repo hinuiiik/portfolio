@@ -1,4 +1,4 @@
-import { Home, Pencil, MapPin, PiggyBank, Newspaper } from "lucide-react"
+import {Home, Pencil, MapPin, PiggyBank, Newspaper} from "lucide-react"
 import {
     Sidebar,
     SidebarContent,
@@ -8,25 +8,27 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
-    SidebarMenuAction,
+    // SidebarMenuAction,
     SidebarMenuSub,
     SidebarMenuSubItem,
     SidebarMenuSubButton
 } from "@/components/ui/sidebar"
 
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    // DropdownMenuLabel,
-    // DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+import Link from 'next/link'
+
+// import {
+//     DropdownMenu,
+//     DropdownMenuContent,
+//     DropdownMenuItem,
+//     // DropdownMenuLabel,
+//     // DropdownMenuSeparator,
+//     DropdownMenuTrigger,
+// } from "@/components/ui/dropdown-menu"
 
 import {
     Collapsible,
-    CollapsibleContent,
-    CollapsibleTrigger,
+    // CollapsibleContent,
+    // CollapsibleTrigger,
 } from "@/components/ui/collapsible"
 
 
@@ -52,14 +54,14 @@ export function AppSidebar() {
                     {/*<SidebarGroupLabel>Application</SidebarGroupLabel>*/}
                     <SidebarGroupContent>
                         <SidebarMenu>
-                                <SidebarMenuItem>
-                                    <SidebarMenuButton asChild>
-                                        <a href="#">
-                                            <Home />
-                                            <span>Home</span>
-                                        </a>
-                                    </SidebarMenuButton>
-                                </SidebarMenuItem>
+                            <SidebarMenuItem>
+                                <SidebarMenuButton asChild>
+                                    <a href="#">
+                                        <Home/>
+                                        <span>Home</span>
+                                    </a>
+                                </SidebarMenuButton>
+                            </SidebarMenuItem>
                             {/*<SidebarMenuItem>*/}
                             {/*    <SidebarMenuButton asChild>*/}
                             {/*        <a href="#Projects">*/}
@@ -71,34 +73,34 @@ export function AppSidebar() {
                             <Collapsible defaultOpen className="group/collapsible">
                                 <SidebarMenuItem>
                                     <SidebarMenuButton asChild>
-                                        <a href="#Projects">
-                                            <Pencil />
+                                        <Link href={"#Projects"}>
+                                            <Pencil/>
                                             <span>Projects</span>
-                                        </a>
+                                        </Link>
                                     </SidebarMenuButton>
                                     <SidebarMenuSub>
                                         <SidebarMenuSubItem>
                                             <SidebarMenuSubButton asChild>
-                                                <a href="#WhereTheHeel">
-                                                    <MapPin />
+                                                <Link href={"#WhereTheHeel"}>
+                                                    <MapPin/>
                                                     <span>Where The Heel</span>
-                                                </a>
+                                                </Link>
                                             </SidebarMenuSubButton>
                                         </SidebarMenuSubItem>
                                         <SidebarMenuSubItem>
                                             <SidebarMenuSubButton asChild>
-                                                <a href="#ChamaQuest">
-                                                    <PiggyBank />
+                                                <Link href={"#ChamaQuest"}>
+                                                    <PiggyBank/>
                                                     <span>ChamaQuest</span>
-                                                </a>
+                                                </Link>
                                             </SidebarMenuSubButton>
                                         </SidebarMenuSubItem>
                                         <SidebarMenuSubItem>
                                             <SidebarMenuSubButton asChild>
-                                                <a href="#CarolinaRazor">
-                                                    <Newspaper />
+                                                <Link href={"#CarolinaRazor"}>
+                                                    <Newspaper/>
                                                     <span>The Carolina Razor</span>
-                                                </a>
+                                                </Link>
                                             </SidebarMenuSubButton>
                                         </SidebarMenuSubItem>
                                     </SidebarMenuSub>

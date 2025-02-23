@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import { FiGithub } from "react-icons/fi";
-import { BsGlobe } from "react-icons/bs";
+import {FiGithub} from "react-icons/fi";
+import {BsGlobe} from "react-icons/bs";
 
 export interface ProjectProps {
     id: string,
@@ -12,9 +12,11 @@ export interface ProjectProps {
     github?: string
 }
 
-export default function ProjectBox({ id, name, image, description, alt, site_link, github }: ProjectProps) {
+export default function ProjectBox({id, name, image, description, alt, site_link, github}: ProjectProps) {
     return (
-        <div className="mx-auto bg-white/10 backdrop-blur-md p-6 rounded-lg border border-white/50 text-left flex flex-col h-[600px]  w-[450px]" id={id}>
+        <div
+            className="mx-auto bg-white/10 backdrop-blur-md p-6 rounded-lg border border-white/50 text-left flex flex-col h-[600px]  w-[450px]"
+            id={id}>
             {site_link ? (
                 <a href={site_link} target="_blank" rel="noopener noreferrer">
                     <Image

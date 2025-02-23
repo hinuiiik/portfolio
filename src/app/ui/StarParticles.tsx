@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
+import React, {useEffect, useMemo, useState} from "react";
+import Particles, {initParticlesEngine} from "@tsparticles/react";
 import {
     type Container,
     type ISourceOptions
 } from "@tsparticles/engine";
-import { loadSlim } from "@tsparticles/slim";
+import {loadSlim} from "@tsparticles/slim";
 
 const BackgroundParticles: React.FC = () => {
     const [initialized, setInitialized] = useState(false);
@@ -28,7 +28,7 @@ const BackgroundParticles: React.FC = () => {
     const options: ISourceOptions = useMemo(
         () => ({
             background: {
-                color: { value: "#000000" }, // Black background
+                color: {value: "#000000"}, // Black background
             },
             fpsLimit: 60,
             interactivity: {
@@ -41,13 +41,13 @@ const BackgroundParticles: React.FC = () => {
                 },
             },
             particles: {
-                color: { value: "#ffffff" }, // White stars
-                links: { enable: false },
-                collisions: { enable: false },
+                color: {value: "#ffffff"}, // White stars
+                links: {enable: false},
+                collisions: {enable: false},
                 move: {
                     enable: true,
                     speed: 1,
-                    outModes: { default: "bounce" },
+                    outModes: {default: "bounce"},
                 },
                 number: {
                     value: 100,
@@ -56,9 +56,9 @@ const BackgroundParticles: React.FC = () => {
                         value_area: 800, // Use value_area instead of area
                     },
                 },
-                opacity: { value: 1 },
-                shape: { type: "circle" },
-                size: { value: { min: 1, max: 3 } },
+                opacity: {value: 1},
+                shape: {type: "circle"},
+                size: {value: {min: 1, max: 3}},
             },
             detectRetina: true,
         }),

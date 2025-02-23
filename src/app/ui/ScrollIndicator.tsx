@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { FiArrowDown } from "react-icons/fi";
+import {useEffect, useState} from "react";
+import {FiArrowDown} from "react-icons/fi";
 
 const ScrollIndicator: React.FC = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -27,7 +27,7 @@ const ScrollIndicator: React.FC = () => {
         <>
             {!scrolled && (
                 <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2">
-                    <FiArrowDown className="w-12 h-12 text-white animate-bounce" />
+                    <FiArrowDown className="w-12 h-12 text-white animate-bounce"/>
                 </div>
             )}
         </>

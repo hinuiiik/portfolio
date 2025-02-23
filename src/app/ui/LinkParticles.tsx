@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
+import React, {useEffect, useMemo, useState} from "react";
+import Particles, {initParticlesEngine} from "@tsparticles/react";
 import {
     type Container,
     type ISourceOptions,
     MoveDirection,
     OutMode,
 } from "@tsparticles/engine";
-import { loadSlim } from "@tsparticles/slim";
+import {loadSlim} from "@tsparticles/slim";
 
 const BackgroundParticles: React.FC = () => {
     const [initialized, setInitialized] = useState(false);
@@ -39,7 +39,7 @@ const BackgroundParticles: React.FC = () => {
 
         return {
             background: {
-                color: { value: "#000000" }, // Deep black space background
+                color: {value: "#000000"}, // Deep black space background
             },
             fpsLimit: 60,
             interactivity: {
@@ -80,7 +80,7 @@ const BackgroundParticles: React.FC = () => {
                     enable: true,
                     speed: 1,
                     direction: MoveDirection.none,
-                    outModes: { default: OutMode.out },
+                    outModes: {default: OutMode.out},
                     random: false,
                     straight: false,
                 },
@@ -91,9 +91,9 @@ const BackgroundParticles: React.FC = () => {
                         value_area: 800,
                     },
                 },
-                opacity: { value: 0.8 },
-                shape: { type: "circle" },
-                size: { value: { min: 1, max: 3 } },
+                opacity: {value: 0.8},
+                shape: {type: "circle"},
+                size: {value: {min: 1, max: 3}},
             },
             detectRetina: true,
         };
