@@ -9,7 +9,7 @@ const client = new Client()
     .setKey(process.env.APPWRITE_API_KEY!);
 
 const databases = new Databases(client);
-const APPWRITE_QSO_DATABASE_ID = process.env.APPWRITE_QSO_APPWRITE_QSO_DATABASE_ID!;
+const APPWRITE_QSO_DATABASE_ID = process.env.APPWRITE_QSO_DATABASE_ID!;
 const APPWRITE_QSO_QUEUE_COLLECTION_ID = process.env.APPWRITE_QSO_QUEUE_COLLECTION_ID!;
 const APPWRITE_QSO_WEBHOOK_SIG_KEY = process.env.APPWRITE_QSO_WEBHOOK_SIG_KEY!;
 const APPWRITE_QSO_LOGS_COLLECTION_ID = process.env.APPWRITE_QSO_LOGS_COLLECTION_ID!;
@@ -117,7 +117,7 @@ function executeShellCommand(text: string, operator: string): Promise<string> {
 async function fetchAndFormatQSO(callsign: string, operator: string): Promise<string> {
     const response = await databases.listDocuments(APPWRITE_QSO_DATABASE_ID, APPWRITE_QSO_LOGS_COLLECTION_ID, [
         Query.equal("callsign", callsign),
-        Query.equal("operator", operator)
+        Query.equal("operator", operator),
     ]);
 
     if (response.documents.length === 0) {
