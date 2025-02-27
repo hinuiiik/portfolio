@@ -28,4 +28,5 @@ COPY . .
 RUN pnpm build
 
 # Set up Xvfb and start the application
-CMD Xvfb :99 -screen 0 1024x768x16 &; DISPLAY=:99 pnpm start
+CMD ["sh", "-c", "Xvfb :99 -screen 0 1024x768x16 & DISPLAY=:99 pnpm start"]
+
