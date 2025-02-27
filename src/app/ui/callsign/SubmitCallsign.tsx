@@ -41,7 +41,17 @@ const client = new Client()
 const DATABASE_ID = "67b5295900277f82afc0";
 const COLLECTION_ID = "67be4ef9002608d5b5d2";
 
-const operators = [{label: "V1UK", value: "V1UK"}] as const;
+const operators = [
+    {label: "VU4N", value: "VU4N"},
+    {label: "VU7A", value: "VU7A"},
+    {label: "VU4K", value: "VU4K"},
+    {label: "VU4KV", value: "VU4KV"},
+    {label: "VU7KP", value: "VU7KP"},
+    {label: "VU4CB", value: "VU4CB"},
+    {label: "VU7AG", value: "VU7AG"},
+    {label: "VU4A", value: "VU4A"},
+    {label: "8Q7KP", value: "8Q7KP"},
+] as const;
 
 const formSchema = z.object({
     callsign: z
@@ -57,7 +67,7 @@ export default function SubmitCallsign() {
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
-        defaultValues: {callsign: "", operator: "V1UK"},
+        defaultValues: {callsign: "", operator: "VU4N"},
     });
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
@@ -66,8 +76,12 @@ export default function SubmitCallsign() {
             const res = await fetch("/api/tools/callsign/queue", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({callsign: values.callsign}),
+                body: JSON.stringify({
+                    callsign: values.callsign,
+                    operator: values.operator,
+                }),
             });
+
 
             const data = await res.json();
 
