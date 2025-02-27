@@ -18,6 +18,8 @@ async function verifySignature(req: NextRequest, body: string) {
     const signatureHeader = req.headers.get("x-appwrite-webhook-signature");
     const webhookUrl = req.headers.get("x-appwrite-webhook-url") || req.nextUrl.toString();
     const expectedSignature = crypto.createHmac("sha1", SECRET_KEY).update(webhookUrl + body).digest("base64");
+    console.log(signatureHeader);
+    console.log(expectedSignature);
 
     return signatureHeader === expectedSignature;
 }
@@ -49,7 +51,7 @@ async function processQueue() {
         await new Promise((resolve) => setTimeout(resolve, 5000));
 
         // actual docker processing stuff here
-        const echoedCallsign = await executeShellCommand(`echo ${callsign}`);
+        const echoedCallsign = await executeShellCommand(`DISPLAY=:99 echo ${callsign}`);
         console.log("Echoed Callsign:", echoedCallsign); // You can use this result for further actions if needed
 
 
