@@ -14,7 +14,6 @@ const COLLECTION_ID = process.env.APPWRITE_CALLSIGN_QUEUE_COLLECTION_ID!;
 const SECRET_KEY = process.env.APPWRITE_WEBHOOKS_SIG_KEY!;
 
 // Verify webhook
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function verifySignature(req: NextRequest, body: string) {
     const signatureHeader = req.headers.get("x-appwrite-webhook-signature");
     const webhookUrl = req.headers.get("x-appwrite-webhook-url") || req.nextUrl.toString();
@@ -65,13 +64,12 @@ async function processQueue() {
 }
 
 export async function POST(req: NextRequest) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const body = await req.text();
 
     // Validate webhook
-    // if (!(await verifySignature(req, body))) {
-    //     return NextResponse.json({error: "Invalid webhook signature"}, {status: 403});
-    // }
+    if (!(await verifySignature(req, body))) {
+        return NextResponse.json({error: "Invalid webhook signature"}, {status: 403});
+    }
 
     const processedCallsign = await processQueue();
 
