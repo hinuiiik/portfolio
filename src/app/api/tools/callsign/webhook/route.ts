@@ -28,7 +28,7 @@ async function verifySignature(req: NextRequest, body: string) {
     return signatureHeader === expectedHmac;
 }
 
-export function getCommand(operator: string): string {
+function getCommand(operator: string): string {
     // access the environment variable using the operator
     const command = process.env[`CMD_${operator}`];
 
