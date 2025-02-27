@@ -14,7 +14,7 @@ const APPWRITE_QSO_QUEUE_COLLECTION_ID = process.env.APPWRITE_QSO_QUEUE_COLLECTI
 const APPWRITE_QSO_WEBHOOK_SIG_KEY = process.env.APPWRITE_QSO_WEBHOOK_SIG_KEY!;
 const APPWRITE_QSO_LOGS_COLLECTION_ID = process.env.APPWRITE_QSO_LOGS_COLLECTION_ID!;
 const APPWRITE_QSO_COMPLETE_COLLECTION_ID = process.env.APPWRITE_QSO_COMPLETE_COLLECTION_ID!;
-
+const APPWRITE_QSO_ERRORS_COLLECTION_ID = process.env.APPWRITE_QSO_ERRORS_COLLECTION_ID!;
 
 // Verify webhook
 async function verifySignature(req: NextRequest, body: string) {
@@ -40,15 +40,32 @@ function getCommand(operator: string): string {
 }
 
 
-function executeShellCommand(text: string, operator: string): Promise<string> {
+function executeShellCommand(text: string, callsign: string, operator: string): Promise<string> {
     const pass_str = getCommand(operator);
     exec(`echo "${text}" > temp.adi`);
     const command = `tqsl -x -a abort -d ${pass_str} temp.adi`;
+    console.log(command);
+
     return new Promise((resolve, reject) => {
-        exec(command, (error, stdout, stderr) => {
-            exec(`echo "${stdout}\n" >> diag.adi`);
-            exec(`echo "${stderr}\n\n" >> diag.adi`);
+        exec(command, async (error, stdout, stderr) => {
+            exec(`echo "${stdout}\n" >> diag.txt`);
+            exec(`echo "${stderr}\n\n" >> diag.txt`);
+
             if (error) {
+                console.error(`Shell command error for ${callsign}:`, stderr);
+
+                // Log error in Appwrite database
+                try {
+                    await databases.createDocument(APPWRITE_QSO_DATABASE_ID, APPWRITE_QSO_ERRORS_COLLECTION_ID, ID.unique(), {
+                        callsign,
+                        operator,
+                        error: stderr || error.message,
+                        time: new Date(Date.now())
+                    });
+                } catch (dbError) {
+                    console.error("Failed to log error to Appwrite:", dbError);
+                }
+
                 reject(`Error: ${stderr}`);
             } else {
                 resolve(stdout.trim());
@@ -56,63 +73,6 @@ function executeShellCommand(text: string, operator: string): Promise<string> {
         });
     });
 }
-
-// async function fetchAndFormatQSO(callsign: string, operator: string): Promise<string> {
-//     try {
-//         const response = await databases.listDocuments(APPWRITE_QSO_DATABASE_ID, APPWRITE_QSO_LOGS_COLLECTION_ID, [
-//             Query.equal("callsign", callsign),
-//             Query.equal("operator", operator)
-//         ]);
-//
-//         if (response.documents.length === 0) {
-//             throw new Error(`No QSO records found for callsign: ${callsign}`);
-//         }
-//
-//         const lines = response.documents.map(doc => {
-//             const {
-//                 callsign,
-//                 qso_date,
-//                 time_on,
-//                 time_off,
-//                 band,
-//                 mode,
-//                 dxcc,
-//                 cqz,
-//                 qsl_rcvd,
-//                 operator,
-//                 gridsquare,
-//                 rst_sent,
-//                 rst_rcvd,
-//                 freq
-//             } = doc;
-//
-//             const fields = [
-//                 `<CALL:${callsign.length}>${callsign}`,
-//                 `<QSO_DATE:8>${qso_date}`,
-//                 time_on ? `<TIME_ON:${time_on.length}>${time_on}` : null,
-//                 time_off ? `<TIME_OFF:${time_off.length}>${time_off}` : null,
-//                 `<BAND:${band.length}>${band}`,
-//                 `<MODE:${mode.length}>${mode}`,
-//                 dxcc ? `<DXCC:${dxcc.toString().length}>${dxcc}` : null,
-//                 cqz ? `<CQZ:${cqz.toString().length}>${cqz}` : null,
-//                 qsl_rcvd !== undefined ? `<QSL_RCVD:1>${qsl_rcvd}` : null,
-//                 operator ? `<OPERATOR:${operator.length}>${operator}` : null,
-//                 gridsquare ? `<GRIDSQUARE:${gridsquare.length}>${gridsquare}` : null,
-//                 rst_sent ? `<RST_SENT:${rst_sent.length}>${rst_sent}` : null,
-//                 rst_rcvd ? `<RST_RCVD:${rst_rcvd.length}>${rst_rcvd}` : null,
-//                 freq ? `<FREQ:${freq.toFixed(4).length}>${freq.toFixed(4)}` : null,
-//                 `<EOR>`
-//             ];
-//
-//             return fields.filter(Boolean).join("");
-//         });
-//
-//         return lines.join("\n");
-//     } catch (error) {
-//         console.error("Error fetching QSO data:", error);
-//         return "";
-//     }
-// }
 
 async function fetchAndFormatQSO(callsign: string, operator: string): Promise<string> {
     const response = await databases.listDocuments(APPWRITE_QSO_DATABASE_ID, APPWRITE_QSO_LOGS_COLLECTION_ID, [
@@ -142,26 +102,34 @@ async function processQueue() {
         console.log("Processing:", callsign);
         await new Promise((resolve) => setTimeout(resolve, 5000));
 
-        // actual docker processing stuff here
-        const text = await fetchAndFormatQSO(callsign, operator);
-        await executeShellCommand(text, operator);
+        try {
+            // Fetch QSO data
+            const text = await fetchAndFormatQSO(callsign, operator);
 
-        console.log("✅ Processed:", callsign);
+            // Execute shell command
+            await executeShellCommand(text, callsign, operator);
 
-        await databases.createDocument(APPWRITE_QSO_DATABASE_ID, APPWRITE_QSO_COMPLETE_COLLECTION_ID, ID.unique(), { // write to completed db
-            callsign,
-            time: new Date(Date.now()),
-            operator,
-        });
+            console.log("✅ Processed:", callsign);
 
-        await databases.deleteDocument(APPWRITE_QSO_DATABASE_ID, APPWRITE_QSO_QUEUE_COLLECTION_ID, $id); // delete from queue db
+            // Write to completed database
+            await databases.createDocument(APPWRITE_QSO_DATABASE_ID, APPWRITE_QSO_COMPLETE_COLLECTION_ID, ID.unique(), {
+                callsign,
+                time: new Date(Date.now()),
+                operator,
+            });
 
+            // Delete from queue database
+            await databases.deleteDocument(APPWRITE_QSO_DATABASE_ID, APPWRITE_QSO_QUEUE_COLLECTION_ID, $id);
 
-        return callsign;
+            return callsign;
+        } catch (error) {
+            console.error("Processing error:", error);
+        }
+
     } catch (error) {
         console.error("Queue processing error:", error);
-        return null;
     }
+    return null;
 }
 
 export async function POST(req: NextRequest) {
