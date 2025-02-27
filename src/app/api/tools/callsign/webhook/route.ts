@@ -115,23 +115,16 @@ function executeShellCommand(text: string, operator: string): Promise<string> {
 // }
 
 async function fetchAndFormatQSO(callsign: string, operator: string): Promise<string> {
-    try {
-        const response = await databases.listDocuments(APPWRITE_QSO_DATABASE_ID, APPWRITE_QSO_LOGS_COLLECTION_ID, [
-            Query.equal("callsign", callsign),
-            Query.equal("operator", operator)
-        ]);
+    const response = await databases.listDocuments(APPWRITE_QSO_DATABASE_ID, APPWRITE_QSO_LOGS_COLLECTION_ID, [
+        Query.equal("callsign", callsign),
+        Query.equal("operator", operator)
+    ]);
 
-        if (response.documents.length === 0) {
-            throw new Error(`No QSO records found for callsign: ${callsign}`);
-        }
-
-        const formattedQSOs = response.documents.map(doc => doc.body).join("\n");
-
-        return formattedQSOs;
-    } catch (error) {
-        console.error("Error fetching QSO data:", error);
-        return "";
+    if (response.documents.length === 0) {
+        return Promise.reject(`No QSO records found for callsign: ${callsign}`);
     }
+
+    return response.documents.map(doc => doc.body).join("\n");
 }
 
 
