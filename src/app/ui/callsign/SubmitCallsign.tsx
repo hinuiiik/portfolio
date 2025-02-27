@@ -134,7 +134,7 @@ export default function SubmitCallsign() {
                         name="operator"
                         render={({field}) => (
                             <FormItem className="flex flex-col">
-                                <FormLabel className="text-gray-300">Operator</FormLabel>
+                                <FormLabel className="text-gray-300">DX Expedition</FormLabel>
                                 <Popover>
                                     <PopoverTrigger asChild>
                                         <FormControl>

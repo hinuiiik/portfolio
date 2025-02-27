@@ -17,11 +17,16 @@ const SECRET_KEY = process.env.APPWRITE_WEBHOOKS_SIG_KEY!;
 async function verifySignature(req: NextRequest, body: string) {
     const signatureHeader = req.headers.get("x-appwrite-webhook-signature");
     const webhookUrl = req.headers.get("x-appwrite-webhook-url") || req.nextUrl.toString();
-    const expectedSignature = crypto.createHmac("sha1", SECRET_KEY).update(webhookUrl + body).digest("base64");
-    console.log(signatureHeader);
-    console.log(expectedSignature);
 
-    return signatureHeader === expectedSignature;
+    if (!signatureHeader) return false;
+
+    const expectedHmac = crypto.createHmac("sha1", SECRET_KEY).update(webhookUrl + body).digest("base64");
+
+    console.log("Webhook URL: ", webhookUrl);
+    console.log("Expected Signature:", expectedHmac);
+    console.log("Received Signature:", signatureHeader);
+
+    return signatureHeader === expectedHmac;
 }
 
 function executeShellCommand(command: string): Promise<string> {
