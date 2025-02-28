@@ -47,7 +47,7 @@ function executeShellCommand(text: string, callsign: string, operator: string): 
     console.log(command);
 
     return new Promise((resolve, reject) => {
-        exec(command, async (error, stdout, stderr) => {
+        exec(command, {timeout: 20000}, async (error, stdout, stderr) => {
             exec(`echo "${stdout}\n" >> diag.txt`);
             exec(`echo "${stderr}\n\n" >> diag.txt`);
 
