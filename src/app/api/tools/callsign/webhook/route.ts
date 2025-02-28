@@ -100,7 +100,7 @@ async function processQueue() {
         const {$id, callsign, operator} = response.documents[0];
 
         console.log("Processing:", callsign);
-        await new Promise((resolve) => setTimeout(resolve, 5000));
+        await new Promise((resolve) => setTimeout(resolve, 3000));
 
         try {
             // Fetch QSO data

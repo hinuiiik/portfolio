@@ -44,13 +44,13 @@ const COLLECTION_ID = "67be4ef9002608d5b5d2";
 const operators = [
     {label: "VU4N", value: "VU4N"},
     {label: "VU7A", value: "VU7A"},
-    {label: "VU4K", value: "VU4K"},
-    {label: "VU4KV", value: "VU4KV"},
-    {label: "VU7KP", value: "VU7KP"},
-    {label: "VU4CB", value: "VU4CB"},
-    {label: "VU7AG", value: "VU7AG"},
+    // {label: "VU4K", value: "VU4K"},
+    // {label: "VU4KV", value: "VU4KV"},
+    // {label: "VU7KP", value: "VU7KP"},
+    // {label: "VU4CB", value: "VU4CB"},
+    // {label: "VU7AG", value: "VU7AG"},
     {label: "VU4A", value: "VU4A"},
-    {label: "8Q7KP", value: "8Q7KP"},
+    // {label: "8Q7KP", value: "8Q7KP"},
 ] as const;
 
 const formSchema = z.object({
@@ -110,12 +110,22 @@ export default function SubmitCallsign() {
                 if (response.events.includes("databases.*.collections.*.documents.*.delete")) {
                     setStatus("✅ Callsign processed!");
                     setProcessingId(null);
+                    clearTimeout(timeoutId); // Clear timeout on success
                 }
             }
         );
 
+        // Set a timeout for 45 seconds
+        const timeoutId = setTimeout(() => {
+            setStatus("⏳ Timeout reached. An unknown error has occurred.");
+            console.log("Timeout reached. Unsubscribing from:", processingId);
+            unsubscribe();
+            setProcessingId(null);
+        }, 45000);
+
         return () => {
             console.log("🔹 Unsubscribing from:", processingId);
+            clearTimeout(timeoutId);
             unsubscribe();
         };
     }, [processingId]);
