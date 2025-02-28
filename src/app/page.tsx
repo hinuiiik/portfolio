@@ -13,7 +13,7 @@ export default function Home() {
             <div
                 className="flex flex-col-reverse lg:flex-row items-center justify-center text-center lg:text-left
              w-full max-w-7xl mx-auto h-screen px-4 sm:px-6 lg:px-8"
-                style={{transform: "translateY(-3em)"}}
+                style={{transform: "translateY(-5em)"}}
             >
                 <div className="flex flex-col lg:w-1/2 mt-6 lg:m-0">
                     <h1 className="text-5xl font-raleway mb-2">Welcome</h1>
