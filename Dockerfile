@@ -9,14 +9,14 @@ WORKDIR /usr/src/app
 
 # Install app dependencies using pnpm
 COPY package*.json ./
-
 RUN pnpm install
 
-# Bundle app source
+# Copy source files
 COPY . .
 
 # Build your Next.js app for production using pnpm
 RUN pnpm build
 
-# Start the application
-CMD ["pnpm", "start"]
+# Set up Xvfb and start the application
+CMD ["sh", "-c", "pnpm start"]
+

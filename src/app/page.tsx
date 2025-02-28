@@ -13,7 +13,7 @@ export default function Home() {
             <div
                 className="flex flex-col-reverse lg:flex-row items-center justify-center text-center lg:text-left
              w-full max-w-7xl mx-auto h-screen px-4 sm:px-6 lg:px-8"
-                style={{transform: "translateY(-3em)"}}
+                style={{transform: "translateY(-5em)"}}
             >
                 <div className="flex flex-col lg:w-1/2 mt-6 lg:m-0">
                     <h1 className="text-5xl font-raleway mb-2">Welcome</h1>
@@ -30,7 +30,7 @@ export default function Home() {
                         alt="Vikram Krishnakumar Suit Picture"
                         width={350}
                         height={350}
-                        className="rounded-lg hidden md:block" // Hidden on small screens, shown on md and larger
+                        className="rounded-lg hidden md:block"
                         priority
                         loading="eager"
                     />
@@ -41,7 +41,7 @@ export default function Home() {
                         alt="Vikram Krishnakumar Suit Picture"
                         width={350} // Width will be overridden by Tailwind
                         height={0} // Maintain aspect ratio
-                        className="rounded-lg block md:hidden w-4/5 mx-auto" // Shown on small screens, 80% width
+                        className="rounded-lg block md:hidden w-4/5 mx-auto"
                         priority
                         loading="eager"
                         style={{height: "auto", width: "80%"}}
@@ -58,9 +58,11 @@ export default function Home() {
 
         {/* Projects Section */}
         <div className="w-full px-4 sm:px-6 lg:px-8 min-h-screen flex flex-col justify-start">
-            <a href={"#Projects"}>
-                <h1 className="py-10 text-center text-4xl font-raleway" id={"Projects"}>Projects</h1>
-            </a>
+            <h1 className={"py-10 text-center text-4xl font-raleway"} id={"Projects"}>
+                <a href={"#Projects"}>
+                    Projects
+                </a>
+            </h1>
             <div className="flex flex-wrap justify-center gap-6 mb-6">
                 <ProjectBox
                     id="WhereTheHeel"
@@ -70,7 +72,6 @@ export default function Home() {
                     alt="Where the Heel webpage"
                     github="https://github.com/Awesomeness7/HackNC-24"
                 />
-
                 <ProjectBox
                     id="ChamaQuest"
                     name="Chamaquest - Hack_NCState 2025"
@@ -89,5 +90,6 @@ export default function Home() {
                 />
             </div>
         </div>
-    </div>);
+    </div>)
+        ;
 }

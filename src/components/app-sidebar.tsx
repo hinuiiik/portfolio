@@ -56,10 +56,10 @@ export function AppSidebar() {
                         <SidebarMenu>
                             <SidebarMenuItem>
                                 <SidebarMenuButton asChild>
-                                    <a href="#">
+                                    <Link href="/#Top">
                                         <Home/>
                                         <span>Home</span>
-                                    </a>
+                                    </Link>
                                 </SidebarMenuButton>
                             </SidebarMenuItem>
                             {/*<SidebarMenuItem>*/}
@@ -73,7 +73,7 @@ export function AppSidebar() {
                             <Collapsible defaultOpen className="group/collapsible">
                                 <SidebarMenuItem>
                                     <SidebarMenuButton asChild>
-                                        <Link href={"#Projects"}>
+                                        <Link href={"/#Projects"}>
                                             <Pencil/>
                                             <span>Projects</span>
                                         </Link>
@@ -81,7 +81,7 @@ export function AppSidebar() {
                                     <SidebarMenuSub>
                                         <SidebarMenuSubItem>
                                             <SidebarMenuSubButton asChild>
-                                                <Link href={"#WhereTheHeel"}>
+                                                <Link href={"/#WhereTheHeel"}>
                                                     <MapPin/>
                                                     <span>Where The Heel</span>
                                                 </Link>
@@ -89,7 +89,7 @@ export function AppSidebar() {
                                         </SidebarMenuSubItem>
                                         <SidebarMenuSubItem>
                                             <SidebarMenuSubButton asChild>
-                                                <Link href={"#ChamaQuest"}>
+                                                <Link href={"/#ChamaQuest"}>
                                                     <PiggyBank/>
                                                     <span>ChamaQuest</span>
                                                 </Link>
@@ -97,7 +97,7 @@ export function AppSidebar() {
                                         </SidebarMenuSubItem>
                                         <SidebarMenuSubItem>
                                             <SidebarMenuSubButton asChild>
-                                                <Link href={"#CarolinaRazor"}>
+                                                <Link href={"/#CarolinaRazor"}>
                                                     <Newspaper/>
                                                     <span>The Carolina Razor</span>
                                                 </Link>
