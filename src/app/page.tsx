@@ -91,7 +91,7 @@ export default function Home() {
                         id="W4VKU Radio Tools"
                         name="W4VKU Radio Tools"
                         image="/radiotools_small.png"
-                        description="Radio Tools is a site built for W4VKU that processes and submits QSO logs based on a given callsign and operation."
+                        description="Radio Tools is a site built for W4VKU that processes and submits QSO logs based on a given callsign and operation. Built with Next.JS."
                         alt="Radio Tools Webpage"
                         github="https://github.com/hinuiiik/radio-tools"
                         site_link={"https://www.w4vku.com"}
