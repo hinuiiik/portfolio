@@ -72,12 +72,13 @@ export default function Home() {
 
                 <div className="flex flex-wrap justify-center gap-6 mb-6">
                     <ProjectBox
-                        id="CarolinaRazor"
-                        name="The Carolina Razor"
+                        id="LiberatorCH"
+                        name="The Liberator"
                         image="/carolinarazor_small.png"
-                        description="The Carolina Razor is a progressive newspaper for the University of North Carolina at Chapel Hill. Built with Next.JS and PayloadCMS."
-                        alt="Carolina Razor Webpage"
+                        description="The Liberator is a student-led progressive newspaper for the University of North Carolina at Chapel Hill. Built with Next.JS and PayloadCMS."
+                        alt="LiberatorCH Webpage"
                         github="https://github.com/CarolinaRazor/website"
+                        site_link="https://www.liberatorch.com/"
                     />
                     <ProjectBox
                         id="PorgUNC"
