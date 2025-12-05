@@ -89,7 +89,7 @@ export default function Home() {
                         github="https://github.com/hinuiiik/porgunc"
                     />
                     <ProjectBox
-                        id="W4VKU Radio Tools"
+                        id="W4VKU"
                         name="W4VKU Radio Tools"
                         image="/radiotools_small.png"
                         description="Radio Tools is a site built for W4VKU that processes and submits QSO logs based on a given callsign and operation. Built with Next.JS."

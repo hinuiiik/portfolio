@@ -45,9 +45,9 @@ export function AppSidebar() {
                                     <SidebarMenuSub>
                                         <SidebarMenuSubItem>
                                             <SidebarMenuSubButton asChild>
-                                                <Link href="/#CarolinaRazor">
+                                                <Link href="/#LiberatorCH">
                                                     <Newspaper />
-                                                    <span>The Carolina Razor</span>
+                                                    <span>The LiberatorCH</span>
                                                 </Link>
                                             </SidebarMenuSubButton>
                                         </SidebarMenuSubItem>
@@ -57,6 +57,15 @@ export function AppSidebar() {
                                                 <Link href="/#PorgUNC">
                                                     <PiggyBank />
                                                     <span>PorgUNC</span>
+                                                </Link>
+                                            </SidebarMenuSubButton>
+                                        </SidebarMenuSubItem>
+
+                                        <SidebarMenuSubItem>
+                                            <SidebarMenuSubButton asChild>
+                                                <Link href="/#W4VKU">
+                                                    <PiggyBank />
+                                                    <span>W4VKU Radio Tools</span>
                                                 </Link>
                                             </SidebarMenuSubButton>
                                         </SidebarMenuSubItem>

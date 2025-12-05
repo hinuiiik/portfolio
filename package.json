@@ -30,7 +30,7 @@
     "cmdk": "1.0.0",
     "date-fns": "^4.1.0",
     "lucide-react": "^0.475.0",
-    "next": "15.1.7",
+    "next": "16.0.7",
     "next-themes": "^0.4.4",
     "node-appwrite": "^15.0.0",
     "pnpm": "^10.5.2",
@@ -51,7 +51,7 @@
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "eslint": "^9.21.0",
-    "eslint-config-next": "15.1.7",
+    "eslint-config-next": "16.0.7",
     "postcss": "^8.5.3",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.3"
@@ -59,6 +59,9 @@
   "pnpm": {
     "ignoredBuiltDependencies": [
       "@tsparticles/engine"
+    ],
+    "onlyBuiltDependencies": [
+      "sharp"
     ]
   }
 }
