@@ -74,7 +74,7 @@ export default function Home() {
                     <ProjectBox
                         id="LiberatorCH"
                         name="The Liberator"
-                        image="/carolinarazor_small.png"
+                        image="/liberator_small.png"
                         description="The Liberator is a student-led progressive newspaper for the University of North Carolina at Chapel Hill. Built with Next.JS and PayloadCMS."
                         alt="LiberatorCH Webpage"
                         github="https://github.com/CarolinaRazor/website"
@@ -87,6 +87,7 @@ export default function Home() {
                         description="PorgUNC (Public Opinion Research Group at UNC) is a student-led polling organization. Built with Next.JS and PayloadCMS."
                         alt="PorgUNC Webpage"
                         github="https://github.com/hinuiiik/porgunc"
+                        site_link="https://www.porgunc.com"
                     />
                     <ProjectBox
                         id="W4VKU"
