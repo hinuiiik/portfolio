@@ -84,7 +84,7 @@ export default function Home() {
                         id="PorgUNC"
                         name="PorgUNC"
                         image="/porgunc_small.png"
-                        description="PorgUNC (Public Opinion Research Group at UNC) is a student-led polling organization. Built with Next.JS and PayloadCMS. In addition to displaying poll results and reports, the website features an online forms for use during polling, utilizing TOTP in order to ensure form sender uniqueness."
+                        description="PorgUNC (Public Opinion Research Group at UNC) is a student-led polling organization. Built with Next.JS and PayloadCMS. In addition to displaying poll results and reports, the website features online poll submission capabilities, utilizing TOTP codes to ensure form sender uniqueness."
                         alt="PorgUNC Webpage"
                         github="https://github.com/hinuiiik/porgunc"
                         site_link="https://www.porgunc.com"
