@@ -98,6 +98,14 @@ export default function Home() {
                         github="https://github.com/hinuiiik/radio-tools"
                         site_link={"https://www.w4vku.com"}
                     />
+                    <ProjectBox
+                        id="USBFlyEnc"
+                        name="USBFlyEnc"
+                        image="/generic_small.png"
+                        description="C application using libsodium and dbus to automatically detect removable drives, transfer encrypted files into a temporary workspace, and after modifications, encrypt and move them back to the removable drive."
+                        alt="USBFlyEnc CLI Image"
+                        github="https://github.com/hinuiiik/usbflyenc"
+                    />
                 </div>
             </section>
 

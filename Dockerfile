@@ -9,6 +9,8 @@ WORKDIR /usr/src/app
 
 # Install app dependencies using pnpm
 COPY package*.json ./
+COPY pnpm-workspace.yaml ./
+
 RUN pnpm install
 
 # Copy source files
