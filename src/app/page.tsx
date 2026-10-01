@@ -41,8 +41,8 @@ export default function Home() {
                             src="/face.jpg"
                             alt="Vikram Krishnakumar Suit Picture"
                             width={350}
-                            height={0}
-                            className="rounded-lg block md:hidden w-4/5 mx-auto"
+                            height={350}
+                            className="rounded-lg block aspect-square md:hidden w-4/5 mx-auto"
                             priority
                             loading="eager"
                             style={{ height: "auto", width: "80%" }}
