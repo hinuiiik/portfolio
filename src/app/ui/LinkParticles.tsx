@@ -9,14 +9,15 @@ import {
     type ISourceOptions,
     MoveDirection,
     OutMode,
+    Engine
 } from "@tsparticles/engine";
 
-const particlesInit = async (engine) => {
+const particlesInit = async (engine: Engine) => {
     await loadSlim(engine);
 };
 
 const BackgroundParticles: React.FC = () => {
-    const particlesLoaded = useCallback(async (container) => {
+    const particlesLoaded = useCallback(async (container: Container | undefined) => {
         console.log("Particles container loaded", container);
     }, []);
 
