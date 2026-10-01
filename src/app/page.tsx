@@ -51,7 +51,7 @@ export default function Home() {
                 </div>
             </div>
 
-            {/* Scroll Arrow — fixed link */}
+            {/* Scroll Arrow */}
             <Link href={"#Projects"}>
                 <ScrollIndicator/>
             </Link>

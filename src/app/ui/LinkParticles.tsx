@@ -1,29 +1,24 @@
 "use client";
 
-import React, {useEffect, useMemo, useState} from "react";
-import Particles, {initParticlesEngine} from "@tsparticles/react";
+import React, { useMemo, useState, useCallback} from "react";
+import Particles, { ParticlesProvider } from "@tsparticles/react";
+import {loadSlim} from "@tsparticles/slim";
+
 import {
     type Container,
     type ISourceOptions,
     MoveDirection,
     OutMode,
 } from "@tsparticles/engine";
-import {loadSlim} from "@tsparticles/slim";
+
+const particlesInit = async (engine) => {
+    await loadSlim(engine);
+};
 
 const BackgroundParticles: React.FC = () => {
-    const [initialized, setInitialized] = useState(false);
-
-    useEffect(() => {
-        initParticlesEngine(async (engine) => {
-            await loadSlim(engine);
-        }).then(() => {
-            setInitialized(true);
-        });
+    const particlesLoaded = useCallback(async (container) => {
+        console.log("Particles container loaded", container);
     }, []);
-
-    const particlesLoaded = async (container?: Container): Promise<void> => {
-        console.log("Particles loaded:", container);
-    };
 
     const options: ISourceOptions = useMemo(() => {
         const spaceColors = [
@@ -39,7 +34,7 @@ const BackgroundParticles: React.FC = () => {
 
         return {
             background: {
-                color: {value: "#000000"}, // Deep black space background
+                color: {value: "#000000"},
             },
             fpsLimit: 60,
             interactivity: {
@@ -99,15 +94,15 @@ const BackgroundParticles: React.FC = () => {
         };
     }, []);
 
-    if (!initialized) return null;
-
     return (
-        <Particles
-            id="tsparticles"
-            options={options}
-            particlesLoaded={particlesLoaded}
-            className="absolute top-0 left-0 w-full h-full -z-10"
-        />
+        <ParticlesProvider init={particlesInit}>
+            <Particles
+                id="tsparticles"
+                options={options}
+                particlesLoaded={particlesLoaded}
+                className="absolute top-0 left-0 w-full h-full -z-10"
+            />
+        </ParticlesProvider>
     );
 };
 

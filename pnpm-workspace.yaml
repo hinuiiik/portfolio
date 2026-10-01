@@ -4,3 +4,6 @@ packages:
   - 'packages/**'
   # if required, exclude some directories
   - '!**/test/**'
+allowBuilds:
+  '@tsparticles/engine': true
+  unrs-resolver: true
