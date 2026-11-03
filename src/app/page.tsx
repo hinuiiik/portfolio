@@ -3,8 +3,12 @@ import LinkParticles from "./ui/LinkParticles";
 import ScrollIndicator from "./ui/ScrollIndicator";
 import ProjectBox from "./ui/ProjectBox";
 import Link from "next/link";
+import { getArticles } from "@/lib/articles";
+import ArticleCard from "./ui/ArticleCard";
 
-export default function Home() {
+export default async function Home() {
+    const articles = (await getArticles()).slice(0, 3);
+
     return (
         <div className="text-white relative w-full scroll-smooth">
             <div className="relative overflow-hidden">
@@ -14,7 +18,6 @@ export default function Home() {
                 <div
                     className="flex flex-col-reverse lg:flex-row items-center justify-center text-center lg:text-left
           w-full max-w-7xl mx-auto h-screen px-4 sm:px-6 lg:px-8"
-                    style={{ transform: "translateY(-5em)" }}
                 >
                     <div className="flex flex-col lg:w-1/2 mt-6 lg:m-0">
                         <h1 className="text-6xl font-raleway font-bold mb-4">Welcome</h1>
@@ -52,9 +55,40 @@ export default function Home() {
             </div>
 
             {/* Scroll Arrow */}
-            <Link href={"#Projects"}>
+            <Link href={"#Articles"}>
                 <ScrollIndicator/>
             </Link>
+
+            {/* Articles Section */}
+            <section
+                id="Articles"
+                className="w-full px-4 sm:px-6 lg:px-8 flex flex-col justify-start scroll-mt-24"
+            >
+                <div className="flex items-center justify-center w-full my-16">
+                    <div className="flex-grow border-t border-white"></div>
+                    <span className="px-6 text-5xl font-raleway font-bold text-white uppercase tracking-wide">
+                        Articles
+                    </span>
+                    <div className="flex-grow border-t border-white"></div>
+                </div>
+
+                {articles.length > 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
+                        {articles.map((article) => (
+                            <ArticleCard key={article.slug} article={article} />
+                        ))}
+                    </div>
+                ) : (
+                    <p className="text-center text-gray-300 mb-8">No articles published yet.</p>
+                )}
+
+                <Link
+                    href="/articles"
+                    className="self-center rounded-md border border-white px-6 py-3 font-semibold text-white transition-colors hover:bg-white hover:text-black"
+                >
+                    View more articles
+                </Link>
+            </section>
 
             {/* Projects Section */}
             <section

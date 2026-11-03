@@ -30,13 +30,13 @@ export default async function RootLayout({children}: { children: React.ReactNode
     return (
         <html lang="en" className={`${inter.variable} ${raleway.variable} antialiased`}>
         <body className="flex min-h-screen w-screen overflow-x-hidden">
-        <SidebarProvider defaultOpen={defaultOpen}>
-            <AppSidebar/>
+        {/*<SidebarProvider defaultOpen={defaultOpen}>*/}
+        {/*    <AppSidebar/>*/}
             <div className="flex-1 relative w-full">
-                <SidebarContainer/>
+        {/*        <SidebarContainer/>*/}
                 <PageWrapper>{children}</PageWrapper>
             </div>
-        </SidebarProvider>
+        {/*</SidebarProvider>*/}
         </body>
         </html>
     );

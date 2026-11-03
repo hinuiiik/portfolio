@@ -15,7 +15,7 @@ export interface ProjectProps {
 export default function ProjectBox({id, name, image, description, alt, site_link, github}: ProjectProps) {
     return (
         <div
-            className="mx-auto bg-white/10 backdrop-blur-md p-6 rounded-lg border border-white/50 text-left flex flex-col h-[600px]  w-[450px]"
+            className="mx-auto p-6 rounded-lg border border-white/50 text-left flex flex-col h-[600px]  w-[450px]"
             id={id}>
             {site_link ? (
                 <a href={site_link} target="_blank" rel="noopener noreferrer">
